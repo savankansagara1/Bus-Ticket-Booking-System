@@ -1,58 +1,176 @@
-# Sleeper Bus Ticket Booking System (Ahmedabad → Mumbai)
-
-## Project Overview
-A backend system for booking sleeper bus tickets on the Ahmedabad → Mumbai route. The system supports seat selection, mandatory meal booking, intermediate stations, booking confirmation prediction, and booking management. UI is described as a wireframe prototype for Figma.
-
-## Core Features
-1. **Route Selection**: Choose Ahmedabad → Mumbai and intermediate stations.
-2. **Seat Selection**: Select available sleeper seats.
-3. **Meal Selection**: Mandatory meal booking during checkout.
-4. **Booking Confirmation**: Predict booking success probability (ML mock).
-5. **Booking Management**: View, confirm, and cancel bookings.
-6. **Availability Check**: Real-time seat and meal availability.
-7. **Booking History**: Retrieve user booking history.
-
-## Test Cases
-### Functional Test Cases
-- Book a seat with meal selection (valid flow)
-- Attempt to book an already booked seat
-- Cancel a booking and rebook the same seat
-- Retrieve available seats and stations
-- View booking history for a user
-
-### Edge Cases
-- Book seat with invalid station
-- Book seat without meal selection (should fail)
-- Cancel non-existent booking
-- Book seat when bus is full
-- Book meal for non-existent booking
-
-### UI/UX Validation Cases
-- Route selection is mandatory
-- Seat selection disables unavailable seats
-- Meal selection is required before confirmation
-- Booking confirmation displays prediction percentage
-- Error messages for invalid actions
-
-## API Endpoints
-| Endpoint              | Method | Description                                 |
-|----------------------|--------|--------------------------------------------- |
-| /seats               | GET    | List all seats and their status              |
-| /book-seat           | POST   | Book a seat (requires meal selection)        |
-| /book-meal           | POST   | Add/modify meal for a booking                |
-| /cancel-booking      | POST   | Cancel a booking                             |
-| /stations            | GET    | List all stations on the route               |
-| /availability        | GET    | Get seat and meal availability               |
-| /booking-history     | GET    | Get user's booking history                   |
-
-## UI/UX Flow Explanation
-1. **Route Selection**: User selects Ahmedabad → Mumbai and intermediate stations.
-2. **Seat Selection**: User views sleeper seat map, selects available seat.
-3. **Meal Selection**: User chooses mandatory meal option.
-4. **Booking Confirmation**: System predicts booking success, displays percentage.
-5. **Booking Management**: User can view, confirm, or cancel bookings.
-
-## Public Prototype Link
-[Prototype (Figma) - Placeholder](https://kinder-habit-46829769.figma.site/)
+# 🚌 Bus Ticket Booking System
+**Ahmedabad → Mumbai Sleeper Bus Route**
 
 ---
+
+## 🔗 Important Links
+
+| Resource | URL |
+|----------|-----|
+| 🌐 **Live Application** | [https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login](https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login) |
+| 🎨 **Figma Prototype** | [https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login](https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login) |
+| 📦 **GitHub Repository** | [https://github.com/savankansagara1/Bus-Ticket-Booking-System](https://github.com/savankansagara1/Bus-Ticket-Booking-System) |
+
+---
+
+## 📋 Project Overview
+
+A full-stack bus ticket booking system for the Ahmedabad → Mumbai route with real-time seat management, mandatory meal selection, intermediate stations, and ML-based booking confirmation prediction.
+
+---
+
+## 🚀 Defined Features
+
+1. **User Authentication** - Secure login/registration with session management
+2. **Route & Station Selection** - Ahmedabad → Mumbai with 7 intermediate stations (Nadiad, Anand, Vadodara, Bharuch, Surat)
+3. **Seat Selection** - 40 sleeper seats with real-time availability and color-coded status
+4. **Meal Selection (Mandatory)** - Veg, Non-Veg, Jain options with modification support
+5. **Booking Prediction** - ML-based confirmation probability (0-99%)
+6. **Booking Management** - View, modify, and cancel bookings
+7. **Availability Check** - Real-time seat and meal availability
+
+---
+
+## 🧪 Test Cases
+
+### Functional Test Cases
+- ✅ Book seat with valid meal selection
+- ✅ Attempt to book already booked seat (error handling)
+- ✅ Cancel booking and rebook same seat
+- ✅ Retrieve available seats and stations
+- ✅ View booking history
+- ✅ Modify meal for existing booking
+
+### Edge Cases
+- ⚠️ Book seat with invalid station
+- ⚠️ Book seat without meal selection (validation)
+- ⚠️ Cancel non-existent booking
+- ⚠️ Book when bus is full (40/40 seats)
+- ⚠️ Unauthorized access (authentication check)
+
+### UI/UX Validation
+- 🎨 Route selection mandatory
+- 🎨 Booked seats disabled/greyed out
+- 🎨 Meal selection required before confirmation
+- 🎨 Prediction percentage displayed
+- 🎨 Responsive design (mobile/desktop)
+- 🎨 Clear error messages
+
+---
+
+## 📡 API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/api/auth/register` | POST | User registration |
+| `/api/auth/login` | POST | User login |
+| `/api/seats` | GET | Get all seats with status |
+| `/api/book-seat` | POST | Book a seat (requires meal) |
+| `/api/book-meal` | POST | Add/modify meal for booking |
+| `/api/cancel-booking` | POST | Cancel a booking |
+| `/api/stations` | GET | List all stations |
+| `/api/availability` | GET | Check seat/meal availability |
+| `/api/booking-history` | GET | User booking history |
+
+---
+
+## 🤖 Prediction Model
+
+**Type:** Rule-based ML mock model  
+**Purpose:** Predict booking confirmation probability (0-99%)
+
+**Features Used:**
+- Seat type (sleeper)
+- Booking time (hour of day)
+- Meal preference (Veg/Non-Veg/Jain)
+- Route distance (number of stations)
+
+**Logic:** Base probability adjusted by:
+- Night bookings: +7%
+- Jain/Veg meals: +6-8%
+- Shorter routes: +5%
+- Longer routes: -8%
+
+📄 **Detailed Documentation:** [PREDICTION_APPROACH.md](./PREDICTION_APPROACH.md)
+
+---
+
+## 💻 Technology Stack
+
+**Frontend:** React.js, React Router, Axios, CSS3, Vite  
+**Backend:** Node.js, Express.js, CORS  
+**Deployment:** Vercel (Frontend), Render (Backend)  
+**Version Control:** Git, GitHub
+
+---
+
+## 🎨 UI/UX Design
+
+**Design Principles:**
+- Simple, step-by-step booking flow (Route → Seat → Meal → Confirm)
+- Mobile-first responsive design
+- Color-coded seat status (Available/Selected/Booked)
+- Real-time validation and feedback
+
+**Booking Flow:**
+1. Login/Register
+2. Select route and stations
+3. Choose seat from visual map
+4. Select meal (mandatory)
+5. View prediction and confirm
+6. Manage bookings
+
+📄 **Design Documentation:** [UI_UX_DESIGN.md](./UI_UX_DESIGN.md)
+
+---
+
+## 📁 Project Structure
+
+```
+Bus-Ticket-Booking-System/
+├── backend/
+│   ├── routes/          # API endpoints
+│   ├── services/        # Prediction logic
+│   └── data/            # Mock data
+├── frontend-react/
+│   ├── src/
+│   │   ├── pages/       # UI components
+│   │   └── services/    # API calls
+│   └── public/
+├── Screenshots/         # App screenshots
+├── README.md
+├── PREDICTION_APPROACH.md
+└── UI_UX_DESIGN.md
+```
+
+---
+
+## 🛠️ Installation
+
+```bash
+# Clone repository
+git clone https://github.com/savankansagara1/Bus-Ticket-Booking-System.git
+
+# Backend setup
+cd backend
+npm install
+npm start
+
+# Frontend setup
+cd frontend-react
+npm install
+npm run dev
+```
+
+---
+
+## 🎯 Evaluation Criteria
+
+✅ **UI/UX Sense:** Simple booking flow, responsive design, clear visual indicators  
+✅ **Code Quality:** Clean architecture, modular design, well-commented code  
+✅ **Analytical Thinking:** Sound prediction model, realistic dataset, clear reasoning
+
+---
+
+**Author:** Savan Kansagara  
+**License:** Educational/Evaluation Purpose
