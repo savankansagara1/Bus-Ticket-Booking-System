@@ -8,7 +8,7 @@
 | Resource | URL |
 |----------|-----|
 | 🌐 **Live Application** | [https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login](https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login) |
-| 🎨 **Figma Prototype** | [https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login](https://kinder-habit-46829769.figma.site/) |
+| 🎨 **Figma Prototype** | [figma-prototype-link](https://kinder-habit-46829769.figma.site/)|
 
 
 ---
