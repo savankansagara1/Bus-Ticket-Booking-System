@@ -45,4 +45,3 @@
 
 ---
 
-**Note:** Wireframes should be created in Figma using the above instructions for each step. Use placeholder images and text as needed.
