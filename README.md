@@ -9,7 +9,7 @@
 |----------|-----|
 | 🌐 **Live Application** | [https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login](https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login) |
 | 🎨 **Figma Prototype** | [https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login](https://bus-ticket-booking-system-git-main-savan-kansagaras-projects.vercel.app/login) |
-| 📦 **GitHub Repository** | [https://github.com/savankansagara1/Bus-Ticket-Booking-System](https://github.com/savankansagara1/Bus-Ticket-Booking-System) |
+
 
 ---
 
@@ -143,34 +143,5 @@ Bus-Ticket-Booking-System/
 └── UI_UX_DESIGN.md
 ```
 
----
-
-## 🛠️ Installation
-
-```bash
-# Clone repository
-git clone https://github.com/savankansagara1/Bus-Ticket-Booking-System.git
-
-# Backend setup
-cd backend
-npm install
-npm start
-
-# Frontend setup
-cd frontend-react
-npm install
-npm run dev
-```
-
----
-
-## 🎯 Evaluation Criteria
-
-✅ **UI/UX Sense:** Simple booking flow, responsive design, clear visual indicators  
-✅ **Code Quality:** Clean architecture, modular design, well-commented code  
-✅ **Analytical Thinking:** Sound prediction model, realistic dataset, clear reasoning
-
----
 
 **Author:** Savan Kansagara  
-**License:** Educational/Evaluation Purpose
