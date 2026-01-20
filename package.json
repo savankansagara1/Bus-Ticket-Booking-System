@@ -1,0 +1,14 @@
+{
+  "name": "bus-ticket-booking-system",
+  "version": "1.0.0",
+  "description": "Bus Ticket Booking System Backend",
+  "main": "backend/app.js",
+  "scripts": {
+    "start": "node backend/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^2.2.2",
+    "cors": "^2.8.5",
+    "express": "^5.2.1"
+  }
+}

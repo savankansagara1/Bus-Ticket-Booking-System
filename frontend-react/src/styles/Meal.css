@@ -1,0 +1,107 @@
+.meal-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+    width: 100%;
+}
+
+.meal-card {
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 48px 32px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.meal-card:hover {
+    border-color: #4a90e2;
+    background-color: #f8fbff;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(74, 144, 226, 0.15);
+}
+
+.meal-card.selected {
+    border-color: #4a90e2;
+    background-color: #e3f2fd;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.2);
+}
+
+.meal-card h3 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #1a1a1a;
+    letter-spacing: 0.5px;
+}
+
+.meal-card .price {
+    font-size: 18px;
+    color: #4a90e2;
+    font-weight: 600;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+    .meal-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .meal-card {
+        padding: 40px 24px;
+    }
+
+    .meal-card h3 {
+        font-size: 22px;
+    }
+
+    .meal-card .price {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .meal-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .meal-card {
+        padding: 36px 28px;
+    }
+
+    .meal-card h3 {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .meal-grid {
+        gap: 12px;
+    }
+
+    .meal-card {
+        padding: 32px 24px;
+    }
+
+    .meal-card h3 {
+        font-size: 18px;
+    }
+
+    .meal-card .price {
+        font-size: 15px;
+    }
+
+    .continue-btn {
+        width: 100%;
+        padding: 14px 24px;
+        font-size: 15px;
+    }
+}
