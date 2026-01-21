@@ -42,6 +42,5 @@
 - Immediate feedback for errors
 - Clean, readable fonts and spacing
 - Mobile-friendly layout
-🎨 **Figma Prototype** | [figma-prototype-link](https://kinder-habit-46829769.figma.site/)| 
 ---
-
+🎨 **Figma Prototype** | [figma-prototype-link](https://kinder-habit-46829769.figma.site/)| 
