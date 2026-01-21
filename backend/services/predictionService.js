@@ -29,3 +29,23 @@ function predictBookingConfirmation({ seatType, bookingTime, mealSelected, route
 }
 
 module.exports = { predictBookingConfirmation };
+
+/*const axios = require("axios");
+
+async function predictBookingConfirmation(data) {
+  try {
+    const response = await axios.post("http://localhost:5000/predict", {
+      seat_type: data.seatType,
+      meal: data.meal,
+      route_distance: data.routeDistance,
+      booking_hour: new Date().getHours()
+    });
+
+    return response.data.prediction;
+  } catch (error) {
+    console.error("ML service error");
+    return null;
+  }
+}
+
+module.exports = { predictBookingConfirmation };

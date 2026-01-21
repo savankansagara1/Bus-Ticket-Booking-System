@@ -45,6 +45,14 @@ router.post('/', (req, res, next) => {
     seat.bookingId = bookingId;
     // ML prediction
     const prediction = predictBookingConfirmation({ seatType: seat.type, bookingTime: booking.createdAt, mealSelected: meal.name, routeDistance: stations.indexOf(toStation) - stations.indexOf(fromStation) });
+    //when ml service is implemented //
+
+    /*const prediction = await predictBookingConfirmation({
+      seatType: seat.type,
+       meal: meal.name,
+      routeDistance:
+       stations.indexOf(toStation) - stations.indexOf(fromStation)
+       });*/
     res.json({ success: true, booking, prediction });
   } catch (err) {
     next(err);

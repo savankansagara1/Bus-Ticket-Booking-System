@@ -1,83 +1,74 @@
-# 🤖 Booking Confirmation Prediction Model
+# 🤖 Booking Confirmation Prediction Approach
 
 ## 📊 Problem Definition
-
-Predict the **probability (%)** that a bus ticket booking will be successfully confirmed based on user choices and booking patterns.
+Predict the **probability (%)** that a bus ticket booking will be successfully confirmed based on booking attributes and user behavior patterns.
 
 ---
 
-## 🎯 Model Choice
+## 🟢 Current Implementation (Deployed)
 
+### 🎯 Model Choice
 **Type:** Rule-based ML mock model
 
-**Why this approach?**
-- **Interpretability:** Clear, transparent logic
-- **No training data required:** Suitable for demonstration
-- **Fast inference:** Instant predictions
-- **Realistic behavior:** Controlled randomness mimics real ML
+**Reasoning:**
+- High interpretability and transparency
+- No dependency on historical datasets
+- Fast inference and stable deployment
+- Suitable for demonstration and evaluation
 
 ---
 
 ## 🔍 Features Used for Prediction
 
 | Feature | Type | Impact |
-|---------|------|--------|
-| **Seat Type** | Categorical | +8% (sleeper seats) |
-| **Booking Time** | Temporal | +3% to +7% (night bookings preferred) |
-| **Meal Selected** | Categorical | +4% to +8% (Jain/Veg higher) |
-| **Route Distance** | Numerical | -8% to +5% (shorter routes easier) |
+|-------|------|-------|
+| Seat Type | Categorical | +8% (sleeper seats) |
+| Booking Time | Temporal | +3% to +7% (night bookings preferred) |
+| Meal Selected | Categorical | +4% to +8% (Jain/Veg higher) |
+| Route Distance | Numerical | −8% to +5% |
 
 ---
 
-## 📁 Mock Dataset
+## 📁 Mock Dataset (Conceptual)
 
 | Seat Type | Booking Time | Meal | Route Distance | Confirmed |
-|-----------|--------------|------|----------------|-----------|
-| sleeper   | 23:00        | Veg  | 6              | Yes       |
-| sleeper   | 10:00        | Non-Veg | 2           | Yes       |
-| sleeper   | 15:00        | Jain | 4              | Yes       |
-| sleeper   | 02:00        | Veg  | 5              | Yes       |
-| sleeper   | 18:00        | Non-Veg | 6           | No        |
-| sleeper   | 21:00        | Jain | 3              | Yes       |
-| sleeper   | 08:00        | Veg  | 1              | Yes       |
-| sleeper   | 12:00        | Non-Veg | 5           | No        |
+|----------|--------------|------|----------------|----------|
+| sleeper | 23:00 | Veg | 6 | Yes |
+| sleeper | 10:00 | Non-Veg | 2 | Yes |
+| sleeper | 15:00 | Jain | 4 | Yes |
+| sleeper | 02:00 | Veg | 5 | Yes |
+| sleeper | 18:00 | Non-Veg | 6 | No |
 
-**Insights:**
-- Night bookings (23:00, 02:00, 21:00) → 100% confirmation
-- Jain meals → High confirmation rate
-- Long routes (5-6 stations) → Mixed results
+**Observed Patterns:**
+- Night bookings → higher confirmation
+- Jain/Veg meals → higher confidence
+- Longer routes → increased uncertainty
 
 ---
 
-## 🧮 Prediction Logic
+## 🧮 Rule-Based Prediction Logic (Deployed)
 
-```javascript
+```js
 function predictBookingConfirmation({ seatType, bookingTime, mealSelected, routeDistance }) {
-  // Base probability
-  let base = 65 + Math.floor(Math.random() * 15); // 65-80%
-  
-  // Adjustments
+  let base = 65 + Math.floor(Math.random() * 15);
+
   if (seatType === 'sleeper') base += 8;
   if (mealSelected === 'Veg') base += 6;
   if (mealSelected === 'Non-Veg') base += 4;
   if (mealSelected === 'Jain') base += 8;
-  
-  // Route distance
+
   if (routeDistance > 5) base -= 8;
   else if (routeDistance > 3) base -= 5;
   else if (routeDistance === 1) base += 5;
-  
-  // Time-based
+
   const hour = new Date(bookingTime).getHours();
-  if (hour >= 22 || hour <= 6) base += 7;  // Night
-  else if (hour >= 18 || hour <= 9) base += 3;  // Morning/Evening
-  
-  // Random variation
+  if (hour >= 22 || hour <= 6) base += 7;
+  else if (hour >= 18 || hour <= 9) base += 3;
+
   base += Math.floor(Math.random() * 10) - 5;
-  
-  // Clamp to 60-95%
   return Math.min(95, Math.max(60, base));
 }
+
 ```
 
 **Example:**
@@ -86,21 +77,34 @@ function predictBookingConfirmation({ seatType, bookingTime, mealSelected, route
 
 ---
 
-## 📈 Training Methodology
+## 🟡 Experimental ML Implementation (Not Deployed)
+To explore a real ML-based approach, an experimental Python ML pipeline was implemented locally.
 
-**Current Implementation (Mock):**
-- No actual training
-- Rules derived from mock dataset patterns
-- Provides realistic, interpretable predictions
+**🔧 Model Details:**
+- **Algorithm**: Logistic Regression
+- **Language**: Python
+- **Libraries**: scikit-learn, pandas
+- **Dataset**: Synthetic historical booking data
 
-**If this were a real ML model:**
-1. Collect 10,000+ historical bookings
-2. Feature engineering (one-hot encoding, normalization)
-3. Train models (Logistic Regression, Random Forest, XGBoost)
-4. Evaluate with accuracy, precision, recall, AUC-ROC
-5. Deploy with real-time inference
+## 📊 Features Used
 
----
+- Seat type (encoded)
+- Meal selection (encoded)
+- Route distance
+-Booking hour
+
+## 🧪 Training Methodology
+
+- Synthetic dataset generation based on realistic assumptions
+- Categorical encoding using LabelEncoder
+- Model trained to predict confirmation probability
+- Output generated using predict_proba()
+
+## 🏗️ Architecture
+
+- Python ML model exposed via REST API
+- Designed to be consumed by Node.js backend
+- Not integrated into production deployment to ensure stability
 
 ## 🎯 Booking Probability Output (%)
 
@@ -121,36 +125,3 @@ function predictBookingConfirmation({ seatType, bookingTime, mealSelected, route
 | Evening, Veg, 3 stations | 82% |
 
 ---
-
-## 🔧 Implementation
-
-**File:** `backend/services/predictionService.js`
-
-**Usage:**
-```javascript
-const probability = predictBookingConfirmation({
-  seatType: 'sleeper',
-  bookingTime: new Date(),
-  mealSelected: 'Veg',
-  routeDistance: 4
-});
-// Returns: 87 (percentage)
-```
-
----
-
-## ✅ Evaluation Criteria Alignment
-
-**Analytical Thinking:**
-- ✅ Sound approach with clear rationale
-- ✅ Realistic mock dataset
-- ✅ Thoughtful feature selection
-- ✅ Clear probability output (0-99%)
-
-**Code Quality:**
-- ✅ Clean, well-commented implementation
-- ✅ Easy to understand and modify
-
----
-
-**Note:** This is a demonstration/mock implementation. In production, this would be replaced with a trained ML model using historical data.

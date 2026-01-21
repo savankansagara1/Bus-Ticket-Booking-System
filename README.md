@@ -76,22 +76,32 @@ A full-stack bus ticket booking system for the Ahmedabad → Mumbai route with r
 
 ## 🤖 Prediction Model
 
-**Type:** Rule-based ML mock model  
-**Purpose:** Predict booking confirmation probability (0-99%)
+**Current Implementation:** Rule-based ML mock model  
+**Purpose:** Predict booking confirmation probability (0–99%)
 
-**Features Used:**
+The deployed application uses a **rule-based mock prediction system** to simulate booking confirmation probability. This approach was chosen for stability, interpretability, and to meet assignment requirements.
+
+### 🔍 Features Used
 - Seat type (sleeper)
 - Booking time (hour of day)
-- Meal preference (Veg/Non-Veg/Jain)
+- Meal preference (Veg / Non-Veg / Jain)
 - Route distance (number of stations)
 
-**Logic:** Base probability adjusted by:
+### 🧠 Prediction Logic
+A base probability is adjusted using logical rules:
 - Night bookings: +7%
-- Jain/Veg meals: +6-8%
+- Jain / Veg meals: +6–8%
 - Shorter routes: +5%
-- Longer routes: -8%
+- Longer routes: −8%
+
+The final output is clamped to a realistic range to simulate real-world ML behavior.
+
+### 🚀 Future Enhancement (ML-Ready Design)
+In addition to the rule-based logic, a **real Machine Learning model has been implemented separately** as a Python microservice using Logistic Regression and a synthetic historical dataset.  
+This ML service is **not connected to the deployed application** to ensure deployment stability, but the backend is designed to integrate it seamlessly in the future.
 
 📄 **Detailed Documentation:** [PREDICTION_APPROACH.md](./PREDICTION_APPROACH.md)
+
 
 ---
 
